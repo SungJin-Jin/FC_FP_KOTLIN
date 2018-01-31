@@ -13,9 +13,15 @@ sealed class List<out T> {
             is Cons -> doubleList.head * product(doubleList.tail)
         }
 
-        fun <T> getHead(list: List<T>): T = TODO()
+        fun <T> getHead(list: List<T>): T = when(list) {
+            Nil -> throw IllegalAccessException("Contains nothing")
+            is Cons -> list.head
+        }
 
-        fun <T> getTail(list: List<T>): List<T> = TODO()
+        fun <T> getTail(list: List<T>): List<T> = when(list) {
+            Nil -> throw IllegalAccessException("Contains nothing")
+            is Cons -> list.tail
+        }
 
         fun <T> appendTail(list: List<T>, tail: T): List<T> = when (list) {
             Nil -> Cons(tail, Nil)
