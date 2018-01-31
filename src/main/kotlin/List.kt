@@ -1,6 +1,6 @@
 sealed class List<out T> {
     object Nil : List<Nothing>()
-    data class Cons<T>(val head: T, val tail: List<T>) : List<T>()
+    class Cons<T>(val head: T, val tail: List<T>) : List<T>()
 
     companion object {
         fun sum(intList: List<Int>): Int = when (intList) {
@@ -22,7 +22,10 @@ sealed class List<out T> {
             is Cons -> Cons(list.head, appendTail(list.tail, tail))
         }
 
-        fun <T> addHead(list: List<T>, head: T): List<T> = TODO()
+        fun <T> addHead(list: List<T>, head: T): List<T> = when(list)  {
+            Nil -> Cons(head, Nil)
+            is Cons -> Cons(head, list)
+        }
 
         tailrec fun <T> drop(list: List<T>, n: Int): List<T> = TODO()
 
