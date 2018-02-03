@@ -1,5 +1,4 @@
-import List.Cons
-import List.Nil
+import List.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
